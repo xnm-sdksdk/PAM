@@ -1,9 +1,9 @@
-# Privileged Access Management
+# PAM - (Privileged Access Management)
 
-# Technologies Used
+## Technologies Used
 
 - Gateway: Nginx
-- Backend: Node.js + Java Spring Boot
+- Backend: Node.js + Java Quarkus
 - Database: MongoDB + PostgreSQL
 - ORM: Mongoose + Hibernate
 - CI/CD: GitHub Actions
@@ -14,3 +14,15 @@
 - Monitoring: Logging + Health Checks
 - Tests: Jest + JUnit
 - Documentation: Swagger
+
+## Services using Node.js
+
+- Agent Service
+- Audit Service
+- Identity Service
+- Secrets Service
+
+## Services using Java Quarkus
+
+- Authz Service
+- Session Service

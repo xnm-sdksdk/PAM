@@ -15,6 +15,12 @@
 - Tests: Jest + JUnit
 - Documentation: Swagger
 
+## Infrastructure Setup
+
+- Gateway (Nginx)
+- Reverse Proxy (Nginx)
+- Vault (Hashicorp Vault)
+
 ## Services using Node.js
 
 - Agent Service
@@ -40,9 +46,3 @@
 - Agent Service, remote execution and endpoint control, executes commands safely, receives credentials from Secrets Service, enforces command restrictions & policies, streams command logs during live sessions, reports suspicious activities to Audit Service.
 
 - Audit Service, centralized logging and auditing, logs everything security-related logins, credential access, policy decisions, session activity, provides audit reports, immutable log storage, query logs by user, resource or session.
-
-## Infrastructure Setup
-
-- Gateway (Nginx)
-- Reverse Proxy (Nginx)
-- Vault (Hashicorp Vault)

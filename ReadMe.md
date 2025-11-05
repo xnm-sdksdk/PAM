@@ -1,6 +1,11 @@
 # PAM - (Privileged Access Management)
 
-## Technologies Used
+## Overview
+
+PAM is a microservices-based system designed to control, monitor, and secure privileged access across distributed infrastructures.
+It ensures that sensitive credentials and sessions are managed with strict policies and auditable events.
+
+### Technologies Used
 
 - Gateway: Nginx
 - Backend: Node.js + Java Quarkus
@@ -15,25 +20,25 @@
 - Tests: Jest + JUnit
 - Documentation: Swagger
 
-## Infrastructure Setup
+### Infrastructure Setup
 
 - Gateway (Nginx)
 - Reverse Proxy (Nginx)
 - Vault (Hashicorp Vault)
 
-## Services using Node.js
+### Services using Node.js
 
 - Agent Service
 - Audit Service
 - Identity Service
 - Secrets Service
 
-## Services using Java Quarkus
+### Services using Java Quarkus
 
 - Authz Service
 - Session Service
 
-## Responsabilities of each service
+### Responsabilities of each service
 
 - Identity Service, provides authentication and manages the lifecycle of user identities. It handles user registration, login including the JWT issuing, password hashing using bcrypt, refresh tokens, stores user profile and roles, sends user events using RabbitMQ.
 

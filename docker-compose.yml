@@ -5,23 +5,114 @@ services:
     build: ./services/agent-service
     ports:
       - "3000:3000"
+    depends_on:
+      - agent-db
+    environment:
+      DATABASE_URL: postgres://${AGENT_DB_USER}:${AGENT_DB_PASS}@agent-db:5432/agent_db
+
   audit-service:
     build: ./services/audit-service
     ports:
       - "3001:3001"
+    depends_on:
+      - audit-db
+    environment:
+      DATABASE_URL: postgres://${AUDIT_DB_USER}:${AUDIT_DB_PASS}@audit-db:5432/audit_db
+
   authz-service:
     build: ./services/authz-service
     ports:
       - "3002:3002"
+    depends_on:
+      - authz-db
+    environment:
+      DATABASE_URL: postgres://${AUTHZ_DB_USER}:${AUTHZ_DB_PASS}@authz-db:5432/authz_db
+
   identity-service:
     build: ./services/identity-service
     ports:
       - "3003:3003"
+    depends_on:
+      - identity-db
+    environment:
+      DATABASE_URL: postgres://${IDENTITY_DB_USER}:${IDENTITY_DB_PASS}@identity-db:5432/identity_db
+
   secrets-service:
     build: ./services/secrets-service
     ports:
       - "3004:3004"
+    depends_on:
+      - secrets-db
+    environment:
+      DATABASE_URL: postgres://${SECRETS_DB_USER}:${SECRETS_DB_PASS}@secrets-db:5432/secrets_db
+
   session-service:
     build: ./services/session-service
     ports:
       - "3005:3005"
+    depends_on:
+      - session-db
+    environment:
+      DATABASE_URL: postgres://${SESSION_DB_USER}:${SESSION_DB_PASS}@session-db:5432/session_db
+
+  agent-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${AGENT_DB_USER}
+      POSTGRES_PASSWORD: ${AGENT_DB_PASS}
+      POSTGRES_DB: agent_db
+    volumes:
+      - agent_data:/var/lib/postgresql/data
+
+  audit-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${AUDIT_DB_USER}
+      POSTGRES_PASSWORD: ${AUDIT_DB_PASS}
+      POSTGRES_DB: audit_db
+    volumes:
+      - audit_data:/var/lib/postgresql/data
+
+  authz-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${AUTHZ_DB_USER}
+      POSTGRES_PASSWORD: ${AUTHZ_DB_PASS}
+      POSTGRES_DB: authz_db
+    volumes:
+      - authz_data:/var/lib/postgresql/data
+
+  identity-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${IDENTITY_DB_USER}
+      POSTGRES_PASSWORD: ${IDENTITY_DB_PASS}
+      POSTGRES_DB: identity_db
+    volumes:
+      - identity_data:/var/lib/postgresql/data
+
+  secrets-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${SECRETS_DB_USER}
+      POSTGRES_PASSWORD: ${SECRETS_DB_PASS}
+      POSTGRES_DB: secrets_db
+    volumes:
+      - secrets_data:/var/lib/postgresql/data
+
+  session-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${SESSION_DB_USER}
+      POSTGRES_PASSWORD: ${SESSION_DB_PASS}
+      POSTGRES_DB: session_db
+    volumes:
+      - session_data:/var/lib/postgresql/data
+
+volumes:
+  agent_data:
+  audit_data:
+  authz_data:
+  identity_data:
+  secrets_data:
+  session_data:

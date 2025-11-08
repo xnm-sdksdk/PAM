@@ -27,7 +27,7 @@ COPY . .
 USER node
 
 # Expose the port that the application listens on.
-EXPOSE 3005
+EXPOSE 3003
 
 # Run the application.
 CMD ["node", "src/app.js"]

@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  agent-service:
+    build: ./services/agent-service
+    ports:
+      - "3000:3000"
+  audit-service:
+    build: ./services/audit-service
+    ports:
+      - "3001:3001"
+  authz-service:
+    build: ./services/authz-service
+    ports:
+      - "3002:3002"
+  identity-service:
+    build: ./services/identity-service
+    ports:
+      - "3003:3003"
+  secrets-service:
+    build: ./services/secrets-service
+    ports:
+      - "3004:3004"
+  session-service:
+    build: ./services/session-service
+    ports:
+      - "3005:3005"

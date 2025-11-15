@@ -5,6 +5,12 @@
 PAM is a microservices-based system designed to control, monitor, and secure privileged access across distributed infrastructures.
 It ensures that sensitive credentials and sessions are managed with strict policies and auditable events.
 
+## Architecture Setup
+
+- domain: business rules, entities, ports
+- application: use cases, services
+- adapter: controllers
+
 ### Technologies Used
 
 - Gateway: Nginx

@@ -7,6 +7,8 @@ services:
       - agent-db
     environment:
       DATABASE_URL: postgres://${AGENT_DB_USER}:${AGENT_DB_PASS}@agent-db:5432/agent_db
+    networks:
+      - api_gateway_network
 
   audit-service:
     build: ./services/audit-service
@@ -16,6 +18,8 @@ services:
       - audit-db
     environment:
       DATABASE_URL: postgres://${AUDIT_DB_USER}:${AUDIT_DB_PASS}@audit-db:5432/audit_db
+    networks:
+      - api_gateway_network
 
   authz-service:
     build: ./services/authz-service
@@ -25,6 +29,8 @@ services:
       - authz-db
     environment:
       DATABASE_URL: postgres://${AUTHZ_DB_USER}:${AUTHZ_DB_PASS}@authz-db:5432/authz_db
+    networks:
+      - api_gateway_network
 
   identity-service:
     build: ./services/identity-service
@@ -34,6 +40,8 @@ services:
       - identity-db
     environment:
       DATABASE_URL: postgres://${IDENTITY_DB_USER}:${IDENTITY_DB_PASS}@identity-db:5432/identity_db
+    networks:
+      - api_gateway_network
 
   secrets-service:
     build: ./services/secrets-service
@@ -43,6 +51,8 @@ services:
       - secrets-db
     environment:
       DATABASE_URL: postgres://${SECRETS_DB_USER}:${SECRETS_DB_PASS}@secrets-db:5432/secrets_db
+    networks:
+      - api_gateway_network
 
   session-service:
     build: ./services/session-service
@@ -52,6 +62,8 @@ services:
       - session-db
     environment:
       DATABASE_URL: postgres://${SESSION_DB_USER}:${SESSION_DB_PASS}@session-db:5432/session_db
+    networks:
+      - api_gateway_network
 
   agent-db:
     image: postgres:15-alpine
@@ -118,6 +130,17 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+
+  nginx:
+    build:
+      context: ./infra/nginx-gateway
+    networks:
+      - api_gateway_network
+    ports:
+      - 80:80
+
+networks:
+  api_gateway_network:
 
 volumes:
   agent_data:
